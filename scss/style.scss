@@ -1,0 +1,390 @@
+@use "sass:math";
+
+$minWidth: 320;
+$maxWidth: 1920;
+$maxWidthContainer: 1439;
+$containerPadding: 30;
+$containerWidth: $maxWidthContainer + $containerPadding;
+
+@import "_reset.scss";
+@import "_fonts.scss";
+@import "_functions.scss";
+
+body {
+  background-color: #fff;
+  font-family: "Russo One";
+}
+
+[class*="__container"] {
+  max-width: #{$containerWidth}px;
+  margin: 0 auto;
+  padding-left: toRem(15);
+  padding-right: toRem(15);
+}
+
+.wrapper {
+  overflow: clip;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.page {
+  flex-grow: 1;
+}
+@import "_header.scss";
+@import "_footer.scss";
+
+.page {
+  &__hero {
+  }
+
+  &__info {
+    @include adaptiveValue("margin-bottom", 89, 29);
+  }
+  &__benefits {
+    @include adaptiveValue("margin-bottom", 99, 31);
+  }
+  &__specs {
+    @include adaptiveValue("margin-bottom", 77, 31);
+  }
+  &__comp {
+    @media (max-width: toEm(768)) {
+      display: none;
+    }
+  }
+}
+.hero {
+  @include adaptiveValue("padding-top", 95, 31, 0, $containerWidth, 768);
+  @include adaptiveValue("padding-bottom", 110, 64, 2, $containerWidth, 900);
+  background: #333087 url("../img/hero/background.webp") 0 0 / 100% no-repeat;
+  &__container {
+    position: relative;
+    display: flex;
+    align-items: start;
+    @include adaptiveValue("gap", 88, 31);
+    @media (max-width: toEm(768)) {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+
+  &__link-logo {
+    @include adaptiveValue("width", 345, 185, 0, $containerWidth, 768);
+    aspect-ratio: 1/1;
+    flex-shrink: 0;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+  }
+
+  &__item {
+    @include adaptiveValue("padding-top", 57, 20, 2, $containerWidth, 768);
+    display: flex;
+    flex-direction: column;
+    @include adaptiveValue("gap", 81, 30, 0, $containerWidth, 768);
+  }
+
+  &__title {
+    text-align: center;
+    text-transform: uppercase;
+    color: #fff;
+    line-height: 1.3;
+    font-size: toRem(62);
+    @include adaptiveValue("font-size", 62, 25, 0, $containerWidth, 768);
+    span {
+      @include adaptiveValue("font-size", 80, 45, 0, $containerWidth, 768);
+    }
+  }
+
+  &__image {
+    max-width: toRem(891);
+    width: 100%;
+    aspect-ratio: 891/525;
+    object-fit: contain;
+    align-self: end;
+  }
+
+  &__absolute-image {
+    position: absolute;
+    left: toRem(15);
+    bottom: toRem(-64);
+    @include adaptiveValue("width", 750, 521, 2, $containerWidth, 900);
+    aspect-ratio: 750/420;
+    @media (max-width: toEm(900)) {
+      display: none;
+    }
+  }
+}
+
+.info {
+  color: #fff;
+  @include adaptiveValue("padding-top", 60, 47);
+  @include adaptiveValue("padding-bottom", 104, 43);
+  background-color: #333087;
+  &__container {
+  }
+
+  &__items {
+    @include adaptiveValue("padding-left", 121, 15, 2, $containerWidth, 1028);
+    @include adaptiveValue("padding-right", 121, 15, 2, $containerWidth, 1028);
+    display: grid;
+
+    @media (min-width: toEm(768)) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    gap: toRem(47);
+    &:not(:last-child) {
+      @include adaptiveValue("margin-bottom", 58, 40);
+    }
+  }
+
+  &__item {
+    display: flex;
+    flex-wrap: wrap;
+    line-height: 1.2;
+    letter-spacing: toRem(1);
+    @include adaptiveValue("gap", 30, 15);
+    align-items: center;
+    @media (max-width: toEm(768)) {
+      justify-content: center;
+      text-align: center;
+      flex-direction: column;
+    }
+    &--column {
+      flex-direction: column;
+      align-items: stretch;
+    }
+  }
+
+  &__title {
+    @include adaptiveValue("font-size", 52, 25);
+    text-transform: uppercase;
+  }
+
+  &__text {
+    @include adaptiveValue("font-size", 37, 20);
+    p {
+      &:not(:last-child) {
+        margin-bottom: toRem(10);
+      }
+    }
+  }
+
+  &__image {
+    max-width: toRem(83);
+    aspect-ratio: 1/1;
+    flex-shrink: 0;
+  }
+}
+
+.benefits {
+  &__container {
+  }
+
+  &__body {
+    position: relative;
+    background: url("../img/benefits/pc.webp") 0 0 / 100% no-repeat;
+    @media (max-width: toEm(1028)) {
+      background-image: url("../img/benefits/tablet.webp");
+      margin-top: toRem(30);
+      aspect-ratio: 921/558;
+    }
+    @media (max-width: toEm(768)) {
+      background-image: url("../img/benefits/mobile.webp");
+      margin-top: toRem(80);
+      aspect-ratio: 280/226;
+    }
+    aspect-ratio: 1439/708;
+    width: 101.433692%;
+  }
+
+  &__label {
+    color: #1d1d1b;
+    @include adaptiveValue("font-size", 37, 19);
+    @include adaptiveValue("max-width", 280, 135);
+    @media ((max-width: toEm(1028)) and (min-width: toEm(768))) {
+      max-width: none;
+    }
+    position: absolute;
+  }
+
+  &__label--top {
+    top: 32.20339%;
+    right: 2.849201%;
+    @media (max-width: toEm(1028)) {
+      top: auto;
+      bottom: 100%;
+      right: 3.583062%;
+    }
+    @media (max-width: toEm(768)) {
+      top: auto;
+      bottom: 103.982301%;
+      right: 2.857143%;
+    }
+  }
+
+  &__label--bottom {
+    bottom: 14.830508%;
+    right: 2.849201%;
+    @media (max-width: toEm(1028)) {
+      bottom: 4.83871%;
+      right: 3.365907%;
+    }
+    @media (max-width: toEm(768)) {
+      right: 12.142857%;
+      bottom: 7.964602%;
+    }
+  }
+}
+
+.specs {
+  &__container {
+  }
+
+  &__items {
+  }
+
+  &__item {
+    &:not(:last-child) {
+      margin-bottom: toRem(27);
+    }
+  }
+}
+.item-specs {
+  display: flex;
+  @media (min-width: toEm(768)) {
+    &:nth-child(even) {
+      flex-direction: row-reverse;
+    }
+  }
+  @include adaptiveValue("gap", 49, 18);
+  align-items: flex-start;
+  @media (max-width: toEm(768)) {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  &__picture {
+    flex: 1 0 34.815844%;
+    aspect-ratio: 1/1;
+    img {
+      width: 100%;
+      height: 100%;
+
+      object-fit: cover;
+    }
+    @media (max-width: toEm(768)) {
+      flex: 0 0 78.571429%;
+      max-width: 78.571429%;
+    }
+  }
+
+  &__body {
+    & > * {
+      @include adaptiveValue("margin-bottom", 38, 12);
+    }
+    & > *:last-child {
+      margin-bottom: 0;
+    }
+    @media (min-width: toEm(768)) {
+      align-self: center;
+    }
+  }
+
+  &__title {
+    color: #e27601;
+    @include adaptiveValue("font-size", 62, 25);
+  }
+
+  &__text {
+    @include adaptiveValue("font-size", 37.5, 19);
+    &:not(:last-child) {
+      margin-bottom: toRem(10);
+    }
+  }
+}
+
+.comp {
+  color: #fff;
+  @include adaptiveValue("padding-top", 56, 32);
+  padding-bottom: toRem(35);
+  background: #333087 url("../img/comp-bg.webp") center bottom / 100% no-repeat;
+  &__title {
+    @include adaptiveValue("font-size", 77, 54, 0, $containerWidth, 768);
+    text-align: center;
+
+    &:not(:last-child) {
+      @include adaptiveValue("margin-bottom", 45, 29);
+    }
+  }
+
+  &__table {
+  }
+}
+.table-comp {
+  &__header {
+    padding: 0 toRem(20);
+    display: flex;
+    justify-content: space-between;
+    @include adaptiveValue("margin-bottom", 91, 76, 0, $containerWidth, 768);
+  }
+
+  &__header-item {
+    flex: 0 1 42.182071%;
+    display: grid;
+    @include adaptiveValue("gap", 38, 28);
+  }
+
+  &__image {
+    width: 100%;
+    object-fit: contain;
+    aspect-ratio: 607/311;
+  }
+
+  &__header-title {
+    @include adaptiveValue("font-size", 52, 35, 0, $containerWidth, 768);
+    text-align: center;
+    line-height: 1.2;
+  }
+
+  &__link-title {
+    text-decoration: underline;
+    text-decoration-color: transparent;
+    transition: text-decoration-color 0.3s;
+    @media (any-hover: hover) {
+      &:hover {
+        text-decoration-color: inherit;
+      }
+    }
+  }
+
+  &__row {
+    &:not(:last-child) {
+      margin-bottom: toRem(15);
+    }
+  }
+
+  &__label {
+    color: #ee7601;
+    @include adaptiveValue("font-size", 42, 29);
+    &:not(:last-child) {
+      @include adaptiveValue("margin-bottom", 15, 9, 0, $containerWidth, 768);
+    }
+  }
+
+  &__row-content {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    @include adaptiveValue("gap", 20, 13);
+  }
+
+  &__row-item {
+    background-color: #ee7601;
+    text-align: center;
+    padding: toRem(33) toRem(58);
+    @include adaptiveValue("font-size", 37, 29, 0, $containerWidth, 768);
+    border-radius: toRem(8);
+  }
+}

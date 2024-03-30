@@ -1,0 +1,21 @@
+.footer {
+  padding-top: toRem(30);
+  @include adaptiveValue("min-height", 513, 230);
+  background: #333087 url("../img/footer-bg.webp") center bottom / contain
+    no-repeat;
+  &__container {
+  }
+
+  &__label {
+    text-align: center;
+    color: #fff;
+    text-transform: uppercase;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    @include adaptiveValue("font-size", 52, 25);
+    span {
+      @include adaptiveValue("font-size", 73, 37);
+    }
+  }
+}
