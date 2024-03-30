@@ -250,7 +250,7 @@ body {
 }
 
 .hero {
-  background: #333087 url("../img/hero/background.webp") 0 0/100% no-repeat;
+  background: #333087 url("../img/hero/background.webp") 0 0/cover no-repeat;
 }
 @media (min-width: 91.8125em) {
   .hero {
